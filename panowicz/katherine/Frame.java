@@ -1,4 +1,5 @@
 package panowicz.katherine;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,7 @@ import animal.herbivore.Giraffe;
 
 public class Frame extends JFrame implements ActionListener {
 
-	// Variables
+// Variables
 	private static int input;
 	private static Scanner fileReader;
 	private static JButton inputBut, outputBut, doneBut;
@@ -30,7 +31,7 @@ public class Frame extends JFrame implements ActionListener {
 	private static ArrayList<Run> threadList = new ArrayList<Run>();
 	private static boolean isThreadInput, isLionInput, isGiraffeInput, isInputFile, isOutputFolder = false;
 
-	// Constructor
+// Constructor
 	Frame() {
 		// JFrame settings
 		this.setLocationRelativeTo(null);
@@ -67,7 +68,7 @@ public class Frame extends JFrame implements ActionListener {
 				}
 			}
 		});
-		// Only accept integers
+// Only accept integers
 		lionInput.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -77,7 +78,7 @@ public class Frame extends JFrame implements ActionListener {
 			}
 		});
 
-		// Text field to get input for number of giraffes
+// Input for number of giraffes 
 		giraffeInput = new JTextField("How many Giraffes?");
 		giraffeInput.setHorizontalAlignment(JTextField.CENTER);
 		// Make UI easier to use and understand
@@ -98,7 +99,7 @@ public class Frame extends JFrame implements ActionListener {
 			}
 		});
     
-		// Only accept integers
+// Only accept integers
 		giraffeInput.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -108,7 +109,7 @@ public class Frame extends JFrame implements ActionListener {
 			}
 		});
 
-		// Text field to get input for number of threads
+// Input for number of threads
 		threadsInput = new JTextField("How many Threads?");
 		threadsInput.setHorizontalAlignment(JTextField.CENTER);
 		// Make UI easier to use and understand
@@ -128,7 +129,7 @@ public class Frame extends JFrame implements ActionListener {
 				}
 			}
 		});
-		// Only accept integers
+// Only accept integers
 		threadsInput.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -137,7 +138,7 @@ public class Frame extends JFrame implements ActionListener {
 				}
 			}
 		});
-		// Add components to Frame and more JFrame settings
+// components and JFrame settings
 		this.add(inputBut);
 		this.add(outputBut);
 		this.add(giraffeInput);
@@ -148,7 +149,7 @@ public class Frame extends JFrame implements ActionListener {
 		this.setVisible(true);
 	}
 
-	// Event management
+// Event management
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Input button clicked
@@ -163,14 +164,14 @@ public class Frame extends JFrame implements ActionListener {
 				inputBut.setText(inputFile.getPath());
 				isInputFile = true;
 			}
-			// Check if input has been received
+// Check if input has been received
 			else {
 				isInputFile = false;
 				inputBut.setText("Select File");
 			}
 		}
     
-	// Output button clicked
+// Output button clicked
 		if (e.getSource() == outputBut) {
 			// File chooser with settings
 			JFileChooser fileChooser = new JFileChooser();
@@ -182,18 +183,19 @@ public class Frame extends JFrame implements ActionListener {
 				outputBut.setText(outputFolder.getPath());
 				isOutputFolder = true;
 			}
-			// Check if input has been received
+			
+// Check if input has been received
 			else {
 				isOutputFolder = false;
 				outputBut.setText("Select Output Folder");
 			}
 		}
 
-	// Done button clicked
+// Done button clicked
 		if (e.getSource() == doneBut) {
 			// Clear the list after every use
 			animalList.clear();
-	// Check to make sure all fields are filled out and start main functions
+// Check to make sure all fields are filled out and start main functions
 			if (!(isThreadInput == false || isLionInput == false || isGiraffeInput == false || isInputFile == false
 					|| isOutputFolder == false)) {
 				input = Integer.parseInt(giraffeInput.getText());
@@ -205,7 +207,7 @@ public class Frame extends JFrame implements ActionListener {
 				input = Integer.parseInt(threadsInput.getText());
 				startThreads();
 			}
-			// Testing purposes
+// Test
 			else {
 				System.out.println("Nothing happened, please fill out all fields!");
 			}
